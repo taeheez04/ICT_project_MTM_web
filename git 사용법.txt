@@ -30,15 +30,14 @@ git pull origin main         # 그냥 git pull 아님! 충돌 나면 여기서 �
                              # 커밋해뒀으니 복붙 백업 불필요
                              # 꼬이면 git merge --abort 로 되돌리기
 
-# =====만든 자기 브랜치 올리기===== (문제 생기면 확인을 위해)
-# 4) 내 브랜치 올리기
+# 3) 내 브랜치 올리기 (*****이걸 해야 업로드 돼*****)
 git push -u origin feature/login   # 처음 한 번만 -u, 이후엔 git push
 
-# 5) 합치기
+# 4) 합치기
 # GitHub → Compare & pull request → base: main / compare: feature/login
 # → 팀원 확인 → Merge pull request
 
-# 6) 브랜치 삭제 (웬만하면 나중에 할 것)
+# 5) 브랜치 삭제 (웬만하면 나중에 할 것)
 git checkout main
 git pull                     # 합쳐진 main 받아오기
 git branch -d feature/login              # 로컬 브랜치 삭제 (병합된 것만 지워짐 → 안전장치)
