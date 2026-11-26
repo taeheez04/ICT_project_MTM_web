@@ -1,13 +1,45 @@
-github 사용법
-1. git 설치
-2. 저장소 만들기
-3. vscode - git bash / git init / git add . / git commit -m "~~"
-git remote add origin 저장주소
+# ===== GitHub 사용법 =====
+# 1. git 설치 (git-scm.com)
+# 2. 저장소 만들기 (GitHub → New repository, README 체크 X)
+# 3. 처음 올리기 > 저장소 만든 사람만 / VSCode 터미널 Git Bash에서
+git init                     # 이 폴더를 git이 관리하도록 설정
+git add .                    # 모든 파일을 올릴 목록에 추가
+git commit -m "첫 커밋"       # 현재 상태를 저장(버전 기록)
+git branch -M main           # 기본 브랜치 이름을 main으로
+git remote add origin https://github.com/taeheez04/ICT_project_MTM_web.git   # 실제 주소
+git push -u origin main      # GitHub로 업로드
 
-작업 시작 전
-git pull
+# 3-1. 팀원은 3번 대신 이것만 (초대 수락 후)
+git clone https://github.com/taeheez04/ICT_project_MTM_web.git
+cd ICT_project_MTM_web
 
-작업 후
+
+# ===== 작업 흐름 (main에 직접 push 금지, 브랜치 → PR로만 합치기) =====
+# 1) 작업 시작 전: main 최신화 후 브랜치 만들기
+git checkout main            # main에서 출발해야 최신 코드 기준으로 갈라짐
+git pull                     # 갈라지기 전에 최신 상태로 맞추기
+git checkout -b feature/login   # 새 브랜치 만들면서 이동 (브랜치명 자유 / -b = 생성)
+
+# 브랜치 위치 확인
+git branch                   # * 표시가 지금 있는 브랜치
+
+# 2) 작업 후: 커밋
 git add .
-git commit -m "26-02-28"
-git push
+git commit -m "26-11-26_14:15_간단설명"
+git pull origin main         # 그냥 git pull 아님! 충돌 나면 여기서 해결 / 올리기 전 최신 내용 받기
+                             # 커밋해뒀으니 복붙 백업 불필요
+                             # 꼬이면 git merge --abort 로 되돌리기
+
+# =====만든 자기 브랜치 올리기===== (문제 생기면 확인을 위해)
+# 4) 내 브랜치 올리기
+git push -u origin feature/login   # 처음 한 번만 -u, 이후엔 git push
+
+# 5) 합치기
+# GitHub → Compare & pull request → base: main / compare: feature/login
+# → 팀원 확인 → Merge pull request
+
+# 6) 브랜치 삭제 (웬만하면 나중에 할 것)
+git checkout main
+git pull                     # 합쳐진 main 받아오기
+git branch -d feature/login              # 로컬 브랜치 삭제 (병합된 것만 지워짐 → 안전장치)
+git push origin --delete feature/login   # GitHub에 브랜치 삭제
