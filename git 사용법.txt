@@ -1,0 +1,13 @@
+github 사용법
+1. git 설치
+2. 저장소 만들기
+3. vscode - git bash / git init / git add . / git commit -m "~~"
+git remote add origin 저장주소
+
+작업 시작 전
+git pull
+
+작업 후
+git add .
+git commit -m "26-02-28"
+git push
